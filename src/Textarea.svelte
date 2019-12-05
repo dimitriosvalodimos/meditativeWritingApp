@@ -1,8 +1,18 @@
 <script>
   import saveAs from "file-saver";
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
 
   let text;
   let name;
+
+  const sendText = () => {
+    // if (e.key == " ") {
+    //   dispatch("updateWordCount", text);
+    // }
+    dispatch("updateWordCount", text);
+  };
 
   const getFilename = () => {
     let filename;
@@ -62,7 +72,8 @@
     placeholder="Start your writing here..."
     cols="30"
     rows="10"
-    bind:value={text} />
+    bind:value={text}
+    on:keypress={sendText} />
   <div>
     <input type="text" placeholder="Enter filename" bind:value={name} />
     <button type="submit" on:click={handleDataDownload}>Save</button>
