@@ -4,8 +4,8 @@
 
   const dispatch = createEventDispatcher();
 
-  let text;
-  let name;
+  export let text;
+  export let name;
 
   const sendText = () => {
     // if (e.key == " ") {
@@ -16,14 +16,14 @@
 
   const getFilename = () => {
     let filename;
-    if (name !== undefined) {
+    if (name !== undefined && name !== "") {
       filename = `${name}.txt`;
     } else {
       const today = new Date();
       const year = today.getFullYear();
       const month = String(today.getMonth() + 1).padStart(2, "0");
       const day = String(today.getDate()).padStart(2, "0");
-      filename = `${year}-${month}-${day}`;
+      filename = `${year}-${month}-${day}.txt`;
     }
     return filename;
   };
